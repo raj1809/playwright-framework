@@ -1,8 +1,9 @@
 import { test, expect } from "@playwright/test";
 
-test("Locators testing", async ({ page }) => {
+test("Locators testing", async ({ page }) => {   // async keyword makes the function return the pomise and await keyword makes the function wait for the promise
+
   // Go to saucedemo.com. Use getByPlaceholder to fill in the username field with standard_user and the password field with secret_sauce.
-  //  Use getByRole('button', ...) to click login.
+  // Use getByRole('button', ...) to click login.
 
   await page.goto("https://www.saucedemo.com");
   await page.getByPlaceholder("Username").fill("standard_user");
