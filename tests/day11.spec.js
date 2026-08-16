@@ -98,7 +98,7 @@ test("Automation task 3", async ({ page }) => {
   await expect(newPage).toHaveTitle('New Window');
 })
 
-// Debuggng challenge
+// Debugging challenge
 // Here we are registering the dialog handler after clicking the button.
 //  The handler should be set up before triggering the dialog, otherwise Playwright may not handle it in time
 
