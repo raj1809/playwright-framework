@@ -58,7 +58,7 @@ test('Automation Exrecise 1', async({page}) => {
     await expect.soft(page).toHaveTitle('Swag Labs')
 })
 
-test('Automation Exercise 2', async({ page }) => {
+test('Automation Exercise 2', async({ page }) => { 
   await page.goto("https://www.saucedemo.com")
      await page.getByPlaceholder("Username").fill("standard_user")
      await page.getByPlaceholder("Password").fill("secret_sauce")
