@@ -1,8 +1,10 @@
 import { test, expect } from "@playwright/test";
 
+test.use({ ignoreHTTPSErrors: true }); // to  ignore the ssl issue
+
 test.describe("Login", () => {
   test.beforeEach(async ({ page }) => {
-    await page.goto("https://www.saucedemo.com");
+    await page.goto('/');
   });
 
   test("Valid Login @smoke ", async ({ page }) => {
@@ -108,7 +110,7 @@ test.describe("Login", () => {
 test.describe('Login', () => {
   test.beforeEach(async ({ page }) => {
 
-    await page.goto('https://www.saucedemo.com');
+    await page.goto('/');
     await page.getByPlaceholder('Username').fill('standard_user');
     await page.getByPlaceholder('Password').fill('secret_sauce');
     await page.getByRole('button', { name: 'Login' }).click();
