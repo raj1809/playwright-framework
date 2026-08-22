@@ -1,4 +1,6 @@
 import { test, expect } from "@playwright/test";
+import { LoginPage } from "../pages/LoginPage.js";
+import { InventoryPage } from "../pages/InventoryPage.js";
 
 test.use({ ignoreHTTPSErrors: true }); // to  ignore the ssl issue
 
@@ -8,98 +10,85 @@ test.describe("Login", () => {
   });
 
   test("Valid Login @smoke ", async ({ page }) => {
-    await page.getByPlaceholder("Username").fill("standard_user");
-    await page.getByPlaceholder("Password").fill("secret_sauce");
-    await page.getByRole("button", { name: "Login" }).click();
+      const loginpage = new LoginPage(page)
+      await loginpage.login('standard_user', 'secret_sauce')
     await expect(page).toHaveTitle("Swag Labs");
     await expect(page).toHaveURL(/inventory\.html/);
   });
 
   test("Invalid Username @regression", async ({ page }) => {
-    await page.getByPlaceholder("Username").fill("stan_user");
-    await page.getByPlaceholder("Password").fill("secret_sauce");
-    await page.getByRole("button", { name: "Login" }).click();
-    const errorMsg = page.locator('[data-test="error"]')
-    await expect(errorMsg).toHaveText("Epic sadface: Username and password do not match any user in this service");
+  const loginpage = new LoginPage(page)
+      await loginpage.login('stan_user', 'secret_sauce')
+   await expect(loginpage.getErrorMessage()).toHaveText("Epic sadface: Username and password do not match any user in this service");
   });
 
   test("Invalid password @regression", async ({ page }) => {
-    await page.getByPlaceholder("Username").fill("standard_user");
-    await page.getByPlaceholder("Password").fill("secret_sau");
-    await page.getByRole("button", { name: "Login" }).click();
-    const errorMsg =  page.locator('[data-test="error"]')
-    await expect(errorMsg).toHaveText("Epic sadface: Username and password do not match any user in this service");
+      const loginpage = new LoginPage(page)
+      await loginpage.login('standard_user', 'secret_sau')
+    await expect(loginpage.getErrorMessage()).toHaveText("Epic sadface: Username and password do not match any user in this service");
   });
 
   test("Empty username field submitted @regression", async ({ page }) => {
-    await page.getByPlaceholder("Username").fill("");
-    await page.getByPlaceholder("Password").fill("secret_sau");
-    await page.getByRole("button", { name: "Login" }).click();
-    const errorMes =page.locator('[data-test="error"]')
-    await expect(errorMes).toHaveText("Epic sadface: Username is required");
+    const loginpage = new LoginPage(page)
+      await loginpage.login('', 'secret_sauce');
+    await expect(loginpage.getErrorMessage()).toHaveText("Epic sadface: Username is required");
   });
 
   test("Empty password field submitted @regression", async ({ page }) => {
-    await page.getByPlaceholder("Username").fill("standard_user");
-    await page.getByPlaceholder("Password").fill("");
-    await page.getByRole("button", { name: "Login" }).click();
-    const errorMess = page.locator('[data-test="error"]')
-    await expect(errorMess).toHaveText("Epic sadface: Password is required");
+      const loginpage = new LoginPage(page)
+      await loginpage.login('standard_user', '')
+    await expect(loginpage.getErrorMessage()).toHaveText("Epic sadface: Password is required");
   });
 
   test("Both fields empty submitted @regression", async ({ page }) => {
-    await page.getByPlaceholder("Username").fill("");
-    await page.getByPlaceholder("Password").fill("");
-    await page.getByRole("button", { name: "Login" }).click();
-    const errorMessage = page.locator('[data-test="error"]');
-    await expect(errorMessage).toHaveText("Epic sadface: Username is required");
+    const loginpage = new LoginPage(page)
+      await loginpage.login('', '')
+    await expect(loginpage.getErrorMessage()).toHaveText("Epic sadface: Username is required");
   });
 
   test("Locked out user @smoke", async ({ page }) => {
-    await page.getByPlaceholder("Username").fill("locked_out_user");
-    await page.getByPlaceholder("Password").fill("secret_sauce");
-    await page.getByRole("button", { name: "Login" }).click();
-    const lockedOutError = page.locator('[data-test="error"]')
-    await expect(lockedOutError).toHaveText(
+    const loginpage = new LoginPage(page)
+      await loginpage.login('locked_out_user', 'secret_sauce')
+    await expect(loginpage.getErrorMessage()).toHaveText(
       "Epic sadface: Sorry, this user has been locked out.",
     );
   });
 
   test("Logout flow @regression", async ({ page }) => {
     await test.step("Login", async () => {
-      await page.getByPlaceholder("Username").fill("standard_user");
-      await page.getByPlaceholder("Password").fill("secret_sauce");
-      await page.getByRole("button", { name: "Login" }).click();
+      const loginpage = new LoginPage(page)
+      const inventorypage = new InventoryPage(page)
+      await loginpage.login('standard_user', 'secret_sauce')
       await expect(page).toHaveURL(/inventory\.html/);
+      expect(await inventorypage.isLoggedIn()).toBe(true)
     });
 
     await test.step("Logout", async () => {
-      await page.getByRole("button", { name: "Open Menu" }).click();
-      await page.getByRole("link", { name: "Logout" }).click();
+      const inventorypage = new InventoryPage(page)
+      await inventorypage.logout()
       await expect(page).toHaveURL("https://www.saucedemo.com/");
     });
   });
 
   test("Session persist test @regression", async ({ page }) => {
-    await page.getByPlaceholder("Username").fill("standard_user");
-    await page.getByPlaceholder("Password").fill("secret_sauce");
-    await page.getByRole("button", { name: "Login" }).click();
+     const loginpage = new LoginPage(page)
+      await loginpage.login('standard_user', 'secret_sauce')
     await expect(page).toHaveURL(/inventory\.html/);
     await page.reload();
     await expect(page).toHaveURL(/inventory\.html/);
   });
 
   test("Login page displays required fields @regression", async ({ page }) => {
+     
     await expect(page.getByPlaceholder("Username")).toBeVisible();
     await expect(page.getByPlaceholder("Password")).toBeVisible();
     await expect(page.getByRole("button", { name: "Login" })).toBeVisible();
   });
 
   test("Problem user can login @regression", async ({ page }) => {
-    await page.getByPlaceholder("Username").fill("problem_user");
-    await page.getByPlaceholder("Password").fill("secret_sauce");
-    await page.getByRole("button", { name: "Login" }).click();
-
+     const loginpage = new LoginPage(page)
+   
+      await loginpage.login('problem_user', 'secret_sauce')
     await expect(page).toHaveURL(/inventory\.html/);
     await expect(page).toHaveTitle("Swag Labs");
   });
@@ -109,7 +98,6 @@ test.describe("Login", () => {
 // debugging challenge:
 test.describe('Login', () => {
   test.beforeEach(async ({ page }) => {
-
     await page.goto('/');
     await page.getByPlaceholder('Username').fill('standard_user');
     await page.getByPlaceholder('Password').fill('secret_sauce');
