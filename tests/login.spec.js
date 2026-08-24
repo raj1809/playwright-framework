@@ -2,6 +2,7 @@ import { test, expect } from "@playwright/test";
 import { LoginPage } from "../pages/LoginPage.js";
 import { InventoryPage } from "../pages/InventoryPage.js";
 
+
 test.use({ ignoreHTTPSErrors: true }); // to  ignore the ssl issue
 
 test.describe("Login", () => {
@@ -49,9 +50,7 @@ test.describe("Login", () => {
   test("Locked out user @smoke", async ({ page }) => {
     const loginpage = new LoginPage(page)
       await loginpage.login('locked_out_user', 'secret_sauce')
-    await expect(loginpage.getErrorMessage()).toHaveText(
-      "Epic sadface: Sorry, this user has been locked out.",
-    );
+    await loginpage.assertLoginError("Epic sadface: Sorry, this user has been locked out.")
   });
 
   test("Logout flow @regression", async ({ page }) => {
@@ -65,7 +64,7 @@ test.describe("Login", () => {
 
     await test.step("Logout", async () => {
       const inventorypage = new InventoryPage(page)
-      await inventorypage.logout()
+      await inventorypage.header.logout()
       await expect(page).toHaveURL("https://www.saucedemo.com/");
     });
   });

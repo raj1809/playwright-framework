@@ -1,3 +1,4 @@
+import { expect } from '@playwright/test'
 import { BasePage } from './BasePage.js'
 
 export class LoginPage extends BasePage {
@@ -20,7 +21,10 @@ export class LoginPage extends BasePage {
     
       getErrorMessage(){
         return this.errorMessage
+     }
 
+     async assertLoginError(expectedMessage){
+        await expect(this.errorMessage).toHaveText(expectedMessage)
      }
 
 
