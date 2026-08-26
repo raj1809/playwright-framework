@@ -11,8 +11,7 @@ export class LoginPage extends BasePage {
     }
 
 
-    
-    async login(username, password){
+      async login(username, password){
          await this.usernameInput.fill(username);
          await this.passwordInput.fill(password);
          await this.loginButton.click();
@@ -26,7 +25,4 @@ export class LoginPage extends BasePage {
      async assertLoginError(expectedMessage){
         await expect(this.errorMessage).toHaveText(expectedMessage)
      }
-
-
 }
-

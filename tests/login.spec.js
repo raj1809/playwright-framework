@@ -1,39 +1,40 @@
 import {test, expect} from '../fixtures/pages.fixture.js'
+import {users} from '../data/users.js'
 
 test.use({ ignoreHTTPSErrors: true }); // to  ignore the ssl issue
 
 test.describe("Login", () => {
   test.beforeEach(async ({ page }) => {
     await page.goto('/');
-  });
+  })
 
   test("Logged in page fixture @smoke", async ({ loggedInPage }) => {
   await expect(loggedInPage).toHaveURL(/inventory\.html/);
 });
 
   test("Valid Login @smoke ", async ({loginPage, page }) => {
-    await loginPage.login('standard_user', 'secret_sauce')
+    await loginPage.login(users.standard.username, users.standard.password)
     await expect(page).toHaveTitle("Swag Labs");
     await expect(page).toHaveURL(/inventory\.html/);
   });
 
   test("Invalid Username @regression", async ({ loginPage }) => {
-      await loginPage.login('stan_user', 'secret_sauce')
+      await loginPage.login('stan_user', users.standard.password)
      await expect(loginPage.getErrorMessage()).toHaveText("Epic sadface: Username and password do not match any user in this service");
   });
 
   test("Invalid password @regression", async ({ loginPage }) => {
-      await loginPage.login('standard_user', 'secret_sau')
+      await loginPage.login(users.standard.username, 'secret_sau')
     await expect(loginPage.getErrorMessage()).toHaveText("Epic sadface: Username and password do not match any user in this service");
   });
 
   test("Empty username field submitted @regression", async ({ loginPage }) => {
-      await loginPage.login('', 'secret_sauce');
+      await loginPage.login('', users.standard.password);
     await expect(loginPage.getErrorMessage()).toHaveText("Epic sadface: Username is required");
   });
 
   test("Empty password field submitted @regression", async ({ loginPage }) => {
-      await loginPage.login('standard_user', '')
+      await loginPage.login(users.standard.username, '')
     await expect(loginPage.getErrorMessage()).toHaveText("Epic sadface: Password is required");
   });
 
@@ -43,13 +44,13 @@ test.describe("Login", () => {
   });
 
   test("Locked out user @smoke", async ({ loginPage }) => {
-      await loginPage.login('locked_out_user', 'secret_sauce')
+      await loginPage.login(users.lockedOut.username, users.lockedOut.password)
     await loginPage.assertLoginError("Epic sadface: Sorry, this user has been locked out.")
   });
 
   test("Logout flow @regression", async ({ loginPage, inventoryPage,page }) => {
     await test.step("Login", async () => {
-      await loginPage.login('standard_user', 'secret_sauce')
+      await loginPage.login(users.standard.username, users.standard.password)
       await expect(page).toHaveURL(/inventory\.html/);
       expect(await inventoryPage.isLoggedIn()).toBe(true)
     });
@@ -61,7 +62,7 @@ test.describe("Login", () => {
   });
 
   test("Session persist test @regression", async ({ loginPage, page }) => {
-      await loginPage.login('standard_user', 'secret_sauce')
+      await loginPage.login(users.standard.username, users.standard.password)
     await expect(page).toHaveURL(/inventory\.html/);
     await page.reload();
     await expect(page).toHaveURL(/inventory\.html/);
@@ -74,7 +75,7 @@ test.describe("Login", () => {
   });
 
   test("Problem user can login @regression", async ({ loginPage, page }) => {   
-      await loginPage.login('problem_user', 'secret_sauce')
+      await loginPage.login(users.problem.username, users.problem.password)
     await expect(page).toHaveURL(/inventory\.html/);
     await expect(page).toHaveTitle("Swag Labs");
   });
