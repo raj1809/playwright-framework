@@ -2,6 +2,9 @@
 import { defineConfig, devices } from '@playwright/test';
 import 'dotenv/config';
 
+import dotenv from 'dotenv';
+
+dotenv.config()
 
 /**
  * Read environment variables from file.
@@ -44,19 +47,42 @@ export default defineConfig({
 
   /* Configure projects for major browsers */
   projects: [
+      { name: 'setup', testMatch: /.*auth\.setup\.js/ },
+
     {
       name: 'chromium',
-      use: { ...devices['Desktop Chrome'] },
+      use: { 
+        ...devices['Desktop Chrome'],
+        storageState: 'playwright/.auth/user.json',
+      },
+      dependencies: ['setup'],
+      testIgnore: '**/login.spec.js',
     },
+      
+    {
+    name: 'login-tests', // ← no storageState, no dependencies
+    use: { ...devices['Desktop Chrome'] },
+    testMatch: '**/login.spec.js',
+  },
 
     {
       name: 'firefox',
-      use: { ...devices['Desktop Firefox'] },
+      use: { 
+        ...devices['Desktop Firefox'],
+        storageState: 'playwright/.auth/user.json',
+      },
+    dependencies: ['setup'],
+    testIgnore: '**/login.spec.js',
     },
 
     {
       name: 'webkit',
-      use: { ...devices['Desktop Safari'] },
+      use: { 
+        ...devices['Desktop Safari'],
+        storageState: 'playwright/.auth/user.json',
+      },
+          dependencies: ['setup'],
+    testIgnore: '**/login.spec.js',
     },
 
    // { name: 'Mobile Chrome', use: { ...devices['Pixel 5'] } }

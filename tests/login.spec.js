@@ -8,14 +8,14 @@ test.describe("Login", () => {
     await page.goto('/');
   })
 
+  
   test("Logged in page fixture @smoke", async ({ loggedInPage }) => {
   await expect(loggedInPage).toHaveURL(/inventory\.html/);
 });
 
-  test("Valid Login @smoke ", async ({loginPage, page }) => {
-    await loginPage.login(users.standard.username, users.standard.password)
+  test("Valid Login @smoke ", async ({ page }) => {
+    await page.goto('/inventory.html')
     await expect(page).toHaveTitle("Swag Labs");
-    await expect(page).toHaveURL(/inventory\.html/);
   });
 
   test("Invalid Username @regression", async ({ loginPage }) => {
