@@ -7,7 +7,7 @@ export function createTestUser( overrides = {}){
             firstName: faker.person.firstName(),
              lastName: faker.person.lastName(),
               password: 'Test@123',
-
+              zipCode: faker.location.zipCode(),
               ...overrides,
     }
 }
