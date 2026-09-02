@@ -16,18 +16,18 @@ All tests are tagged so they can be run selectively.
 | Remove item, verify count decreases | @regression |
 | Product details match inventory listing | @regression |
 | Full checkout flow — end to end | @smoke |
-| Negative checkout — each required field missing | @regression |
+| Checkout fails with missing First Name | @regression |
+| Checkout fails with missing Last Name | @regression |
+| Checkout fails with missing Zip/Postal Code | @regression |
 | Cancel during checkout returns to cart | @regression |
 | Products sorted by price low to high | @regression |
 | Cart persists after navigating away and back | @regression |
 
-Assertion strategy
-
+Assertion strategy:
 All assertions use Playwright's built-in expect with auto-retrying locators, so there are no manual waits or waitForTimeout calls anywhere in the suite. Every toHaveText / toHaveURL / toContainText polls until the condition is true or the default 5 s timeout expires.
-
 The negative checkout test runs as a deterministic for...of loop so that all three required fields are validated on every run, rather than relying on a random pick that would only cover one field per run.
 
-Running the tests
+Running the tests:
 
 # Install dependencies
 npm install

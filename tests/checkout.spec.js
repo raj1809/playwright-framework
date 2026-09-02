@@ -111,97 +111,28 @@ test.describe("Cart", () => {
     })
 })
 
-//     test('Negative checkout test @regression', async ({ inventoryPage, cartPage, checkoutPage }) => {
-//     await inventoryPage.addProductToCart('Sauce Labs Backpack')
-//     await inventoryPage.cart.goToCartPage()
-//     await cartPage.checkout()
-//     const user = createTestUser()
-//     const fields = [
-//     {
-//         name: 'First Name',
-//         locator: checkoutPage.firstName,
-//         error: 'Error: First Name is required',
-//         errorKey: 'First Name'           // ✅ what errorMessage() needs
-//     },
-//     {
-//         name: 'Last Name',
-//         locator: checkoutPage.lastName,
-//         error: 'Error: Last Name is required',
-//         errorKey: 'Last Name'
-//     },
-//     {
-//         name: 'Zip/Postal Code',
-//         locator: checkoutPage.zipCode,
-//         error: 'Error: Postal Code is required',
-//         errorKey: 'Postal Code'          
-//     }
-// ]
+const fields = [
+  { name: "First Name", errorKey: "First Name", error: "Error: First Name is required" },
+  { name: "Last Name", errorKey: "Last Name", error: "Error: Last Name is required" },
+  { name: "Zip/Postal Code", errorKey: "Postal Code", error: "Error: Postal Code is required" },
+];
 
-//     const missingField = fields[Math.floor(Math.random() * fields.length)]
+for (const field of fields) {
+  test(`Checkout fails with missing ${field.name} @regression`, async ({ inventoryPage, cartPage, checkoutPage }) => {
+    const user = createTestUser();
+    await inventoryPage.addProductToCart('Sauce Labs Backpack');
+    await inventoryPage.cart.goToCartPage();
+    await cartPage.checkout();
+    await checkoutPage.fillInfo(user.firstName, user.lastName, user.zipCode);
 
-//     await checkoutPage.fillInfo(
-//         user.firstName,
-//         user.lastName,
-//         user.zipCode
-//     )
+    if (field.name === 'First Name') await checkoutPage.firstName.fill('');
+    if (field.name === 'Last Name') await checkoutPage.lastName.fill('');
+    if (field.name === 'Zip/Postal Code') await checkoutPage.zipCode.fill('');
 
-//     await missingField.locator.fill('')
-//     console.log(`Missing field: ${missingField.name}`)
-//     await checkoutPage.continueToOverview()
-
-//     await expect(checkoutPage.errorMessage(missingField.errorKey)).toHaveText(missingField.error) 
-// })
-
-test(
-  "Negative checkout test — each required field @regression",
-  async ({ inventoryPage, cartPage, checkoutPage, page }) => {
-    const fields = [
-      {
-        name: "First Name",
-        locator: checkoutPage.firstName,
-        errorKey: "First Name",
-        error: "Error: First Name is required",
-      },
-      {
-        name: "Last Name",
-        locator: checkoutPage.lastName,
-        errorKey: "Last Name",
-        error: "Error: Last Name is required",
-      },
-      {
-        name: "Zip/Postal Code",
-        locator: checkoutPage.zipCode,
-        errorKey: "Postal Code",
-        error: "Error: Postal Code is required",
-      },
-    ];
-
-    for (const field of fields) {
-      // Clear cart from localStorage while keeping the login session
-      await page.evaluate(() => {
-        Object.keys(localStorage)
-          .filter((key) => key !== "session-username")
-          .forEach((key) => localStorage.removeItem(key));
-      });
-
-      await page.goto("/inventory.html");
-
-      await inventoryPage.addProductToCart("Sauce Labs Backpack");
-      await inventoryPage.cart.goToCartPage();
-      await cartPage.checkout();
-
-      const user = createTestUser();
-
-      await checkoutPage.fillInfo(user.firstName, user.lastName, user.zipCode);
-      await field.locator.fill("");
-      await checkoutPage.continueToOverview();
-
-      await expect(checkoutPage.errorMessage(field.errorKey)).toHaveText(
-        field.error
-      );
-    }
-  }
-);
+    await checkoutPage.continueToOverview();
+    await expect(checkoutPage.errorMessage(field.errorKey)).toHaveText(field.error);
+  });
+}
 
 
 test('Verify that clicking Cancel during checkout takes the user back to the cart @regression', async({inventoryPage, cartPage, checkoutPage, page}) => {
