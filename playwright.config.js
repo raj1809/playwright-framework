@@ -56,13 +56,18 @@ export default defineConfig({
         storageState: 'playwright/.auth/user.json',
       },
       dependencies: ['setup'],
-      testIgnore: '**/login.spec.js',
+      testIgnore: ['**/login.spec.js', '**/api/**'],
     },
       
     {
     name: 'login-tests', // ← no storageState, no dependencies
     use: { ...devices['Desktop Chrome'] },
     testMatch: '**/login.spec.js',
+  },
+
+  {
+    name: 'api',
+    testMatch: '**/api/**/*.spec.js',
   },
 
     {
@@ -72,7 +77,7 @@ export default defineConfig({
         storageState: 'playwright/.auth/user.json',
       },
     dependencies: ['setup'],
-    testIgnore: '**/login.spec.js',
+    testIgnore: ['**/login.spec.js', '**/api/**'],
     },
 
     {
@@ -82,7 +87,7 @@ export default defineConfig({
         storageState: 'playwright/.auth/user.json',
       },
           dependencies: ['setup'],
-    testIgnore: '**/login.spec.js',
+    testIgnore: ['**/login.spec.js', '**/api/**'],
     },
 
    // { name: 'Mobile Chrome', use: { ...devices['Pixel 5'] } }
