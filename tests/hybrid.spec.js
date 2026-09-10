@@ -1,6 +1,6 @@
 import { test, expect } from '../fixtures/pages.fixture.js'
 
-test.only('Task 1', async ({ page }) => {
+test('Task 1', async ({ page }) => {
   await page.goto('/inventory.html');
   await page.evaluate(() => {
     localStorage.setItem('cart-contents', JSON.stringify([{ id: 4, qty: 1 }]));
@@ -10,7 +10,7 @@ test.only('Task 1', async ({ page }) => {
   await expect(page.locator('.shopping_cart_badge')).toHaveText('1');
 });
 
-test.only(' Task 2', async ({ page }) => {
+test(' Task 2', async ({ page }) => {
  await page.goto('/inventory.html')
  await page.evaluate(() => {
    localStorage.setItem('cart-contents', JSON.stringify([{ id: 4, qty: 1}, {id: 3, qty: 1 }]));
