@@ -1,14 +1,31 @@
 import {test, expect} from '../fixtures/pages.fixture.js'
 import {users} from '../data/users.js'
+import loginCases from '../data/loginCases.json' assert { type: 'json' };
 
-test.use({ ignoreHTTPSErrors: true }); // to  ignore the ssl issue
 
 test.describe("Login", () => {
   test.beforeEach(async ({ page }) => {
     await page.goto('/');
   })
 
-  
+
+  for (const data of loginCases){
+    test(`login failed when: ${data.username || '(empty)'} / ${data.password || '(empty)'}`, async({ loginPage}) => {
+      await loginPage.login(data.username, data.password);
+    await expect(loginPage.getErrorMessage()).toHaveText(data.expectedError);
+
+    })
+  }
+
+      const userTypes = ['standard_user', 'problem_user', 'performance_glitch_user']
+
+      for (const userType of userTypes) {
+         test(`${userType} can log in and reach inventory`, async ({ loginPage, page }) => {
+         await loginPage.login(userType, 'secret_sauce');
+        await expect(page).toHaveURL(/inventory\.html/);
+  })
+}
+
   test("Logged in page fixture @smoke", async ({ loggedInPage }) => {
   await expect(loggedInPage).toHaveURL(/inventory\.html/);
 });
@@ -16,31 +33,6 @@ test.describe("Login", () => {
   test("Valid Login @smoke ", async ({ page }) => {
     await page.goto('/inventory.html')
     await expect(page).toHaveTitle("Swag Labs");
-  });
-
-  test("Invalid Username @regression", async ({ loginPage }) => {
-      await loginPage.login('stan_user', users.standard.password)
-     await expect(loginPage.getErrorMessage()).toHaveText("Epic sadface: Username and password do not match any user in this service");
-  });
-
-  test("Invalid password @regression", async ({ loginPage }) => {
-      await loginPage.login(users.standard.username, 'secret_sau')
-    await expect(loginPage.getErrorMessage()).toHaveText("Epic sadface: Username and password do not match any user in this service");
-  });
-
-  test("Empty username field submitted @regression", async ({ loginPage }) => {
-      await loginPage.login('', users.standard.password);
-    await expect(loginPage.getErrorMessage()).toHaveText("Epic sadface: Username is required");
-  });
-
-  test("Empty password field submitted @regression", async ({ loginPage }) => {
-      await loginPage.login(users.standard.username, '')
-    await expect(loginPage.getErrorMessage()).toHaveText("Epic sadface: Password is required");
-  });
-
-  test("Both fields empty submitted @regression", async ({ loginPage }) => {
-      await loginPage.login('', '')
-    await expect(loginPage.getErrorMessage()).toHaveText("Epic sadface: Username is required");
   });
 
   test("Locked out user @smoke", async ({ loginPage }) => {

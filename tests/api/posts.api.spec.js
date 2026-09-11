@@ -96,3 +96,5 @@ test('API  - check post title', async ({ request }) => {
 });
 
 // await was missing as "response.json() parses the response body as JSON, and this is also async" hence, the solution
+
+

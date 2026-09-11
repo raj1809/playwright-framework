@@ -27,3 +27,14 @@
     
     console.log(saraUser)
      })
+
+
+
+
+// BAD: dynamic title done wrong — every test gets the same title.
+// for (const data of invalidLogins) {
+//   test('login fails', async ({ loginPage }) => { ... });
+// }
+
+// This is a real CI problem because identical titles make failures ambiguous,
+// so you can't reliably tell which test data caused the failure.

@@ -21,6 +21,7 @@
 
 import { test, expect } from "../fixtures/pages.fixture.js";
 import { createTestUser } from "../data/userFactory.js";
+import checkoutValidationCases from '../data/checkoutValidationCases.json' assert { type: 'json' }; 
 
 test.describe("Cart", () => {
   test.beforeEach(async ({ page }) => {
@@ -111,27 +112,22 @@ test.describe("Cart", () => {
     })
 })
 
-const fields = [
-  { name: "First Name", errorKey: "First Name", error: "Error: First Name is required" },
-  { name: "Last Name", errorKey: "Last Name", error: "Error: Last Name is required" },
-  { name: "Zip/Postal Code", errorKey: "Postal Code", error: "Error: Postal Code is required" },
-];
 
-for (const field of fields) {
-  test(`Checkout fails with missing ${field.name} @regression`, async ({ inventoryPage, cartPage, checkoutPage }) => {
-    const user = createTestUser();
-    await inventoryPage.addProductToCart('Sauce Labs Backpack');
-    await inventoryPage.cart.goToCartPage();
-    await cartPage.checkout();
-    await checkoutPage.fillInfo(user.firstName, user.lastName, user.zipCode);
+for (const data of checkoutValidationCases) {
+  test(`Checkout fails with missing ${data.name} @regression`, async ({ inventoryPage, cartPage, checkoutPage }) => {
+    const user = createTestUser()
+    await inventoryPage.addProductToCart('Sauce Labs Backpack')
+    await inventoryPage.cart.goToCartPage()
+    await cartPage.checkout()
+    await checkoutPage.fillInfo(user.firstName, user.lastName, user.zipCode)
 
-    if (field.name === 'First Name') await checkoutPage.firstName.fill('');
-    if (field.name === 'Last Name') await checkoutPage.lastName.fill('');
-    if (field.name === 'Zip/Postal Code') await checkoutPage.zipCode.fill('');
+    if (data.name === 'First Name') await checkoutPage.firstName.fill('')
+    if (data.name === 'Last Name') await checkoutPage.lastName.fill('')
+    if (data.name === 'Zip/Postal Code') await checkoutPage.zipCode.fill('')
 
     await checkoutPage.continueToOverview();
-    await expect(checkoutPage.errorMessage(field.errorKey)).toHaveText(field.error);
-  });
+    await expect(checkoutPage.errorMessage(data.errorKey)).toHaveText(data.error)
+  })
 }
 
 
@@ -143,17 +139,26 @@ test('Verify that clicking Cancel during checkout takes the user back to the car
         await expect(page).toHaveURL(/cart\.html/)
 })
 
-test('Verify products are sorted by price from low to high @regression', async ({ inventoryPage }) => {
 
-    await inventoryPage.sortProducts('lohi')
-    const priceTexts = await inventoryPage.productPrices.allInnerTexts()
-    const prices = priceTexts.map(price => parseFloat(price.replace('$', '')))
+const sortOptions = ['lohi', 'hilo'];
 
-    for (let i = 0; i < prices.length - 1; i++) 
-      {
-        expect(prices[i]).toBeLessThanOrEqual(prices[i + 1])
-       }
-  })
+for (const sortOption of sortOptions) {
+  test(`Verify products are sorted ${sortOption === 'lohi' ? 'low to high' : 'high to low'} @regression`, async ({ inventoryPage }) => {
+
+    await inventoryPage.sortProducts(sortOption);
+
+    const priceTexts = await inventoryPage.productPrices.allInnerTexts();
+    const prices = priceTexts.map(price => parseFloat(price.replace('$', '')));
+
+    for (let i = 0; i < prices.length - 1; i++) {
+      if (sortOption === 'lohi') {
+        expect(prices[i]).toBeLessThanOrEqual(prices[i + 1]);
+      } else {
+        expect(prices[i]).toBeGreaterThanOrEqual(prices[i + 1]);
+      }
+    }
+  });
+}
 
   test('Cart persists after navigating to product details and back @regression', async ({inventoryPage, page}) => {
 

@@ -1,0 +1,16 @@
+
+ [
+  { 
+    "name": "First Name",
+    "errorKey": "First Name", 
+    "error": "Error: First Name is required" 
+},
+  { "name": "Last Name",
+    "errorKey": "Last Name", 
+    "error": "Error: Last Name is required" 
+},
+  { "name": "Zip/Postal Code",
+    "errorKey": "Postal Code", 
+    "error": "Error: Postal Code is required"
+}
+]
