@@ -2,22 +2,23 @@
     import { test, expect } from '@playwright/test'
     import { createTestUser } from '../data/userFactory.js'
 
-
-
-     test('Homepage has correct title', async({ page }) => {
+    test('Homepage has correct title', async({ page }) => {
              await page.goto('https://www.saucedemo.com')
              await expect(page).toHaveTitle('Swag Labs')
 
     })
 
-     test('homepage URL contains saucedemo.com', async({ page }) => {
-         await page.goto('https://www.saucedemo.com')
+     test('homepage URL contains saucedemo.com', async({ page }, testInfo) => {
+                 await page.goto('https://www.saucedemo.com')
+
+        const screenshotBuffer = await page.screenshot()   
+        await testInfo.attach('test-screenshot', { body: screenshotBuffer, contentType: 'image/png' });
          await expect(page).toHaveURL(/saucedemo\.com/)
 
      })
 
-    test('print users', async ({ page}) => {
-    const user1 = createTestUser();             
+    test('print users', async ({ page }) => {
+             const user1 = createTestUser();             
             const user2 = createTestUser()
     
              console.log(user1)

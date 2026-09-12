@@ -79,7 +79,7 @@ test('Automation Exercise 2', async({ page }) => {
         
 }) 
 
-test.skip('Custom failure message', async ({ page }) => {
+test('Custom failure message', async ({ page }) => {
   await page.goto("https://www.saucedemo.com");
 
   await page.getByPlaceholder("Username").fill("standard_user");
@@ -93,7 +93,7 @@ test.skip('Custom failure message', async ({ page }) => {
   await expect.soft(
     cartBadge,
     "Cart badge should show exactly 2 after adding one product"
-  ).toHaveText("2");
+  ).toHaveText("1");
 })
 
 // Debugging challenge

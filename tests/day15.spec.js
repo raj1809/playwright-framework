@@ -1,5 +1,3 @@
-import { test, expect} from '@playwright/test'
-
 // Exercise 1: done, all the test passed
 
 // Exercise 2: Done

@@ -31,11 +31,14 @@ test(' Task 2', async ({ page }) => {
                 userId: 1,
             },
         })
+
+            expect(create.status()).toBe(201)
              const createBody = await create.json()
     
             const response = await request.get(`https://jsonplaceholder.typicode.com/posts/${createBody.id}`)
             const body = await response.json()
-            expect(body.title).toBe('Test')
+            expect(createBody.title).toBe('Test')
+  
 
     })
 
@@ -78,16 +81,16 @@ test(' Task 2', async ({ page }) => {
 // If your test's goal is to verify the "Add to Cart" button works, 
 // you must click it in the test—otherwise the test passes even if the button is broken.
 
-
 test('Automation task 3', async({ request }) => {
 
-    // NOTE: jsonplaceholder doesn't truly persist POSTs, so this test practices the 
-  // create-then-verify pattern but won't always meaningfully assert real persistence.
-  // In a real backend, this would verify that 3 created posts appear in the GET /posts list.
+  // JSONPlaceholder doesn't persist POSTs, so we test:
+  // 1. POST returns correct data in response
+  // 2. GET on pre-existing posts works
 
   const titles = ['Post 1', 'Post 2', 'Post 3']
   const createdPosts = []
 
+  // Test POST: verify responses contain what we sent
   for (const title of titles) {
     const response = await request.post('https://jsonplaceholder.typicode.com/posts', {
       data: {
@@ -96,16 +99,31 @@ test('Automation task 3', async({ request }) => {
         userId: 1,
       },
     })
+    expect(response.status()).toBe(201)
+    
     const body = await response.json()
     createdPosts.push(body)
+    
+    // Verify POST response contains our data
+    expect(body.title).toBe(title)
+    expect(body.body).toBe('Test content')
+    expect(body.userId).toBe(1)
   }
 
+  // Test GET: verify pre-existing posts are fetched
   const allPostsResponse = await request.get('https://jsonplaceholder.typicode.com/posts');
+  expect(allPostsResponse.status()).toBe(200)
+  
   const allPosts = await allPostsResponse.json();
-
-  for (const post of createdPosts) {
-    expect(allPosts.some(p => p.title === post.title)).toBe(true);
-  }
+  expect(allPosts.length).toBeGreaterThan(0)
+  
+  // Verify we can get a specific pre-existing post
+  const specificPostResponse = await request.get('https://jsonplaceholder.typicode.com/posts/1')
+  expect(specificPostResponse.status()).toBe(200)
+  
+  const specificPost = await specificPostResponse.json()
+  expect(specificPost.id).toBe(1)
+  expect(specificPost.title).toBeDefined()
 })
 
 // Debugging challenge:

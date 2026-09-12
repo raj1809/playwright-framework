@@ -8,16 +8,16 @@ test.describe("Login", () => {
     await page.goto('/');
   })
 
-
   for (const data of loginCases){
     test(`login failed when: ${data.username || '(empty)'} / ${data.password || '(empty)'}`, async({ loginPage}) => {
       await loginPage.login(data.username, data.password);
     await expect(loginPage.getErrorMessage()).toHaveText(data.expectedError);
 
     })
+
   }
 
-      const userTypes = ['standard_user', 'problem_user', 'performance_glitch_user']
+  const userTypes = ['standard_user', 'problem_user', 'performance_glitch_user']
 
       for (const userType of userTypes) {
          test(`${userType} can log in and reach inventory`, async ({ loginPage, page }) => {
@@ -75,7 +75,7 @@ test.describe("Login", () => {
 
 
 // debugging challenge:
-test.describe('Login', () => {
+test.describe('Cart Test', () => {
   test.beforeEach(async ({ page }) => {
     await page.goto('/');
     await page.getByPlaceholder('Username').fill('standard_user');

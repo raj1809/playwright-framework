@@ -1,20 +1,18 @@
-// * ASSERTION STRATEGY — checkout.spec.js
-//  *
-//  * All assertions use Playwright's built-in `expect` with auto-retry locators.
-//  * This means every `expect(...).toHaveText(...)` / `toHaveURL(...)` will poll
-//  * until the condition is true or the timeout expires (default 5 s), so there
-//  * is no need for manual waits or retries.
-//  *
-//  * Error messages are asserted via `checkoutPage.errorMessage(errorKey)` where
-//  * `errorKey` is the plain field name the page object wraps with
-//  * "Error: … is required". The full expected string is stored separately in
-//  * each field object so the two can be compared without relying on string
-//  * construction inside the test.
-//  *
-//  * Negative checkout cases run as a deterministic `for...of` loop so that
-//  * every field is validated on every run, giving consistent coverage rather
-//  * than the random single-field approach.
-//  *
+//  ASSERTION STRATEGY — checkout.spec.js
+//   All assertions use Playwright's built-in `expect` with auto-retry locators.
+//   This means every `expect(...).toHaveText(...)` / `toHaveURL(...)` will poll
+//   until the condition is true or the timeout expires (default 5 s), so there
+//   is no need for manual waits or retries.
+//  
+//   Error messages are asserted via `checkoutPage.errorMessage(errorKey)` where
+//   `errorKey` is the plain field name the page object wraps with
+//   "Error: … is required". The full expected string is stored separately in
+//   each field object so the two can be compared without relying on string
+//   construction inside the test.
+//  Negative checkout cases run as a deterministic `for...of` loop so that
+//   every field is validated on every run, giving consistent coverage rather
+//   than the random single-field approach.
+//  
 
 
 
