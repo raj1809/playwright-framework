@@ -1,7 +1,5 @@
 # playwright-framework
 
-What is tested
-
 All tests are tagged so they can be run selectively.
 
 | Tag | Purpose |
@@ -22,6 +20,9 @@ All tests are tagged so they can be run selectively.
 | Cancel during checkout returns to cart | @regression |
 | Products sorted by price low to high | @regression |
 | Cart persists after navigating away and back | @regression |
+
+## Tech Stack
+Playwright, JavaScript, Faker.js, Allure
 
 Assertion strategy:
 All assertions use Playwright's built-in expect with auto-retrying locators, so there are no manual waits or waitForTimeout calls anywhere in the suite. Every toHaveText / toHaveURL / toContainText polls until the condition is true or the default 5 s timeout expires.
@@ -57,3 +58,5 @@ Fixtures — page objects are injected via a custom Playwright fixture (pages.fi
 Deterministic negative tests — the negative checkout test iterates over all required fields in a fixed order rather than selecting one randomly, so CI always gets consistent, reproducible coverage.
 
 No test.only in source — test.only is only ever used locally during debugging and is never committed.
+
+![alt text](image.png)
