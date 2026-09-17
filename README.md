@@ -59,4 +59,3 @@ Deterministic negative tests — the negative checkout test iterates over all re
 
 No test.only in source — test.only is only ever used locally during debugging and is never committed.
 
-![alt text](image.png)

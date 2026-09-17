@@ -1,40 +1,40 @@
-<testsuites id="" name="" tests="63" failures="0" skipped="0" errors="0" time="26.917652999999998">
-<testsuite name="auth.setup.js" timestamp="2026-09-12T08:29:01.970Z" hostname="setup" tests="1" failures="0" skipped="0" time="1.208" errors="0">
-<testcase name="authenticate" classname="auth.setup.js" time="1.208">
+<testsuites id="" name="" tests="63" failures="0" skipped="0" errors="0" time="32.470481">
+<testsuite name="auth.setup.js" timestamp="2026-09-17T14:58:08.410Z" hostname="setup" tests="1" failures="0" skipped="0" time="1.117" errors="0">
+<testcase name="authenticate" classname="auth.setup.js" time="1.117">
 </testcase>
 </testsuite>
-<testsuite name="cart.spec.js" timestamp="2026-09-12T08:29:01.970Z" hostname="chromium" tests="1" failures="0" skipped="0" time="1.881" errors="0">
-<testcase name="Cart › can add item to cart" classname="cart.spec.js" time="1.881">
+<testsuite name="cart.spec.js" timestamp="2026-09-17T14:58:08.410Z" hostname="chromium" tests="1" failures="0" skipped="0" time="2.935" errors="0">
+<testcase name="Cart › can add item to cart" classname="cart.spec.js" time="2.935">
 </testcase>
 </testsuite>
-<testsuite name="checkout.spec.js" timestamp="2026-09-12T08:29:01.970Z" hostname="chromium" tests="12" failures="0" skipped="0" time="25.5" errors="0">
-<testcase name="Cart › Add one product to cart @regression" classname="checkout.spec.js" time="2.127">
+<testsuite name="checkout.spec.js" timestamp="2026-09-17T14:58:08.410Z" hostname="chromium" tests="12" failures="0" skipped="0" time="33.156" errors="0">
+<testcase name="Cart › Add one product to cart @regression" classname="checkout.spec.js" time="2.931">
 </testcase>
-<testcase name="Cart › Add multiple products to cart, verify cart page shows the correct items and count @regression" classname="checkout.spec.js" time="2.07">
+<testcase name="Cart › Add multiple products to cart, verify cart page shows the correct items and count @regression" classname="checkout.spec.js" time="2.592">
 </testcase>
-<testcase name="Cart › Remove an item from the cart, verify count decreases @regression" classname="checkout.spec.js" time="2.111">
+<testcase name="Cart › Remove an item from the cart, verify count decreases @regression" classname="checkout.spec.js" time="2.927">
 </testcase>
-<testcase name="Cart › Product Details Verification @regression" classname="checkout.spec.js" time="2.017">
+<testcase name="Cart › Product Details Verification @regression" classname="checkout.spec.js" time="2.792">
 </testcase>
-<testcase name="Cart › full checkout flow test @smoke" classname="checkout.spec.js" time="2.437">
+<testcase name="Cart › full checkout flow test @smoke" classname="checkout.spec.js" time="3.338">
 </testcase>
-<testcase name="Cart › Checkout fails with missing First Name @regression" classname="checkout.spec.js" time="2.052">
+<testcase name="Cart › Checkout fails with missing First Name @regression" classname="checkout.spec.js" time="2.977">
 </testcase>
-<testcase name="Cart › Checkout fails with missing Last Name @regression" classname="checkout.spec.js" time="2.511">
+<testcase name="Cart › Checkout fails with missing Last Name @regression" classname="checkout.spec.js" time="3.027">
 </testcase>
-<testcase name="Cart › Checkout fails with missing Zip/Postal Code @regression" classname="checkout.spec.js" time="2.249">
+<testcase name="Cart › Checkout fails with missing Zip/Postal Code @regression" classname="checkout.spec.js" time="2.996">
 </testcase>
-<testcase name="Cart › Verify that clicking Cancel during checkout takes the user back to the cart @regression" classname="checkout.spec.js" time="2.023">
+<testcase name="Cart › Verify that clicking Cancel during checkout takes the user back to the cart @regression" classname="checkout.spec.js" time="2.675">
 </testcase>
-<testcase name="Cart › Verify products are sorted low to high @regression" classname="checkout.spec.js" time="2.072">
+<testcase name="Cart › Verify products are sorted low to high @regression" classname="checkout.spec.js" time="2.395">
 </testcase>
-<testcase name="Cart › Verify products are sorted high to low @regression" classname="checkout.spec.js" time="2.083">
+<testcase name="Cart › Verify products are sorted high to low @regression" classname="checkout.spec.js" time="2.133">
 </testcase>
-<testcase name="Cart › Cart persists after navigating to product details and back @regression" classname="checkout.spec.js" time="1.748">
+<testcase name="Cart › Cart persists after navigating to product details and back @regression" classname="checkout.spec.js" time="2.373">
 </testcase>
 </testsuite>
-<testsuite name="day10.spec.js" timestamp="2026-09-12T08:29:01.970Z" hostname="chromium" tests="3" failures="0" skipped="0" time="4.752" errors="0">
-<testcase name="Locators testing" classname="day10.spec.js" time="1.584">
+<testsuite name="day10.spec.js" timestamp="2026-09-17T14:58:08.410Z" hostname="chromium" tests="3" failures="0" skipped="0" time="6.669" errors="0">
+<testcase name="Locators testing" classname="day10.spec.js" time="2.401">
 <system-out>
 <![CDATA[[33m6[39m
 Sauce Labs Backpack
@@ -42,45 +42,45 @@ Test.allTheThings() T-Shirt (Red)
 ]]>
 </system-out>
 </testcase>
-<testcase name="Automation tasks" classname="day10.spec.js" time="1.728">
+<testcase name="Automation tasks" classname="day10.spec.js" time="2.328">
 </testcase>
-<testcase name="Debugging challenge" classname="day10.spec.js" time="1.44">
+<testcase name="Debugging challenge" classname="day10.spec.js" time="1.94">
 </testcase>
 </testsuite>
-<testsuite name="day11.spec.js" timestamp="2026-09-12T08:29:01.970Z" hostname="chromium" tests="9" failures="0" skipped="0" time="42.693" errors="0">
-<testcase name="login on saucedemo using fill" classname="day11.spec.js" time="1.572">
+<testsuite name="day11.spec.js" timestamp="2026-09-17T14:58:08.410Z" hostname="chromium" tests="9" failures="0" skipped="0" time="51.901" errors="0">
+<testcase name="login on saucedemo using fill" classname="day11.spec.js" time="2.015">
 </testcase>
-<testcase name="check the first checkbox, uncheck the second if it is checked" classname="day11.spec.js" time="4.593">
+<testcase name="check the first checkbox, uncheck the second if it is checked" classname="day11.spec.js" time="4.391">
 </testcase>
-<testcase name="Go to app, use selectOption to choose &quot;Option 2&quot; from the dropdown. Assert the selected value is &quot;2&quot;" classname="day11.spec.js" time="4.08">
+<testcase name="Go to app, use selectOption to choose &quot;Option 2&quot; from the dropdown. Assert the selected value is &quot;2&quot;" classname="day11.spec.js" time="11.06">
 </testcase>
-<testcase name="Go to app and hover over the first user avatar Assert that the caption text containing &quot;name&quot; becomes visible" classname="day11.spec.js" time="8.416">
+<testcase name="Go to app and hover over the first user avatar Assert that the caption text containing &quot;name&quot; becomes visible" classname="day11.spec.js" time="4.565">
 </testcase>
-<testcase name="Go to app, click the input field, and press the &quot;A&quot; key using page.keyboard.press. Assert the result text shows &quot;You entered: A&quot; " classname="day11.spec.js" time="4.15">
+<testcase name="Go to app, click the input field, and press the &quot;A&quot; key using page.keyboard.press. Assert the result text shows &quot;You entered: A&quot; " classname="day11.spec.js" time="8.299">
 </testcase>
-<testcase name="Handle and accept the JS alert before clicking, then verify the result confirms acceptance" classname="day11.spec.js" time="3.99">
+<testcase name="Handle and accept the JS alert before clicking, then verify the result confirms acceptance" classname="day11.spec.js" time="4.602">
 </testcase>
-<testcase name="Automation task 1" classname="day11.spec.js" time="4.625">
+<testcase name="Automation task 1" classname="day11.spec.js" time="3.948">
 <system-out>
 <![CDATA[I am a JS Confirm
 ]]>
 </system-out>
 </testcase>
-<testcase name="locate content inside the iframe using frameLocator" classname="day11.spec.js" time="5.71">
+<testcase name="locate content inside the iframe using frameLocator" classname="day11.spec.js" time="7.419">
 </testcase>
-<testcase name="Automation task 3" classname="day11.spec.js" time="5.557">
+<testcase name="Automation task 3" classname="day11.spec.js" time="5.602">
 <system-out>
 <![CDATA[New Window
 ]]>
 </system-out>
 </testcase>
 </testsuite>
-<testsuite name="day12.spec.js" timestamp="2026-09-12T08:29:01.970Z" hostname="chromium" tests="7" failures="0" skipped="0" time="9.185" errors="0">
-<testcase name="Exercise 1 and 2" classname="day12.spec.js" time="1.443">
+<testsuite name="day12.spec.js" timestamp="2026-09-17T14:58:08.410Z" hostname="chromium" tests="7" failures="0" skipped="0" time="10.014" errors="0">
+<testcase name="Exercise 1 and 2" classname="day12.spec.js" time="1.115">
 </testcase>
-<testcase name="Exercise 3" classname="day12.spec.js" time="1.248">
+<testcase name="Exercise 3" classname="day12.spec.js" time="1.181">
 </testcase>
-<testcase name="Exercise 4" classname="day12.spec.js" time="1.237">
+<testcase name="Exercise 4" classname="day12.spec.js" time="1.177">
 <system-out>
 <![CDATA[[
   [32m'Sauce Labs Backpack'[39m,
@@ -93,124 +93,124 @@ Test.allTheThings() T-Shirt (Red)
 ]]>
 </system-out>
 </testcase>
-<testcase name="Exercise 5" classname="day12.spec.js" time="1.3">
+<testcase name="Exercise 5" classname="day12.spec.js" time="1.164">
 </testcase>
-<testcase name="Automation Exrecise 1" classname="day12.spec.js" time="1.285">
+<testcase name="Automation Exrecise 1" classname="day12.spec.js" time="1.506">
 </testcase>
-<testcase name="Automation Exercise 2" classname="day12.spec.js" time="1.319">
+<testcase name="Automation Exercise 2" classname="day12.spec.js" time="1.362">
 <system-out>
 <![CDATA[[ [32m'$7.99'[39m, [32m'$9.99'[39m, [32m'$15.99'[39m, [32m'$15.99'[39m, [32m'$29.99'[39m, [32m'$49.99'[39m ]
 [ [33m7.99[39m, [33m9.99[39m, [33m15.99[39m, [33m15.99[39m, [33m29.99[39m, [33m49.99[39m ]
 ]]>
 </system-out>
 </testcase>
-<testcase name="Custom failure message" classname="day12.spec.js" time="1.353">
+<testcase name="Custom failure message" classname="day12.spec.js" time="2.509">
 </testcase>
 </testsuite>
-<testsuite name="day13.spec.js" timestamp="2026-09-12T08:29:01.970Z" hostname="chromium" tests="8" failures="0" skipped="0" time="13.154" errors="0">
-<testcase name="Exercise 1- part 1" classname="day13.spec.js" time="3.164">
+<testsuite name="day13.spec.js" timestamp="2026-09-17T14:58:08.410Z" hostname="chromium" tests="8" failures="0" skipped="0" time="17.502" errors="0">
+<testcase name="Exercise 1- part 1" classname="day13.spec.js" time="4.501">
 </testcase>
-<testcase name="Exercise 1- part 2" classname="day13.spec.js" time="1.237">
+<testcase name="Exercise 1- part 2" classname="day13.spec.js" time="2.395">
 </testcase>
-<testcase name="Exercise 2" classname="day13.spec.js" time="1.58">
+<testcase name="Exercise 2" classname="day13.spec.js" time="2.222">
 </testcase>
-<testcase name="Exercise 3" classname="day13.spec.js" time="2.33">
+<testcase name="Exercise 3" classname="day13.spec.js" time="2.909">
 </testcase>
-<testcase name="Exercise 4" classname="day13.spec.js" time="1.37">
+<testcase name="Exercise 4" classname="day13.spec.js" time="1.747">
 </testcase>
-<testcase name="Automation Task 1" classname="day13.spec.js" time="0.343">
+<testcase name="Automation Task 1" classname="day13.spec.js" time="0.424">
 </testcase>
-<testcase name="Automation task 2" classname="day13.spec.js" time="1.592">
+<testcase name="Automation task 2" classname="day13.spec.js" time="1.579">
 <system-out>
 <![CDATA[Response found: https://www.saucedemo.com/
 Status: [33m200[39m
 ]]>
 </system-out>
 </testcase>
-<testcase name="checkout flow -- debugging challenge" classname="day13.spec.js" time="1.538">
+<testcase name="checkout flow -- debugging challenge" classname="day13.spec.js" time="1.725">
 </testcase>
 </testsuite>
-<testsuite name="dd.spec.js" timestamp="2026-09-12T08:29:01.970Z" hostname="chromium" tests="3" failures="0" skipped="0" time="1.384" errors="0">
-<testcase name="GET posts returns only posts for userId=1" classname="dd.spec.js" time="0.482">
+<testsuite name="dd.spec.js" timestamp="2026-09-17T14:58:08.410Z" hostname="chromium" tests="3" failures="0" skipped="0" time="4.389" errors="0">
+<testcase name="GET posts returns only posts for userId=1" classname="dd.spec.js" time="2.556">
 </testcase>
-<testcase name="GET posts returns only posts for userId=5" classname="dd.spec.js" time="0.476">
+<testcase name="GET posts returns only posts for userId=5" classname="dd.spec.js" time="0.522">
 </testcase>
-<testcase name="GET posts returns only posts for userId=10" classname="dd.spec.js" time="0.426">
+<testcase name="GET posts returns only posts for userId=10" classname="dd.spec.js" time="1.311">
 </testcase>
 </testsuite>
-<testsuite name="first.spec.js" timestamp="2026-09-12T08:29:01.970Z" hostname="chromium" tests="3" failures="0" skipped="0" time="2.843" errors="0">
-<testcase name="Homepage has correct title" classname="first.spec.js" time="1.205">
+<testsuite name="first.spec.js" timestamp="2026-09-17T14:58:08.410Z" hostname="chromium" tests="3" failures="0" skipped="0" time="3.288" errors="0">
+<testcase name="Homepage has correct title" classname="first.spec.js" time="1.378">
 </testcase>
-<testcase name="homepage URL contains saucedemo.com" classname="first.spec.js" time="1.277">
+<testcase name="homepage URL contains saucedemo.com" classname="first.spec.js" time="1.514">
 </testcase>
-<testcase name="print users" classname="first.spec.js" time="0.361">
+<testcase name="print users" classname="first.spec.js" time="0.396">
 <system-out>
 <![CDATA[{
-  email: [32m'Wendy_Schaden@hotmail.com'[39m,
-  firstName: [32m'Breana'[39m,
-  lastName: [32m'Weber'[39m,
+  email: [32m'Mozell_Cassin@hotmail.com'[39m,
+  firstName: [32m'Wilfrid'[39m,
+  lastName: [32m'Gleason'[39m,
   password: [32m'Test@123'[39m,
-  zipCode: [32m'48969-8286'[39m
+  zipCode: [32m'84554-6177'[39m
 }
 {
-  email: [32m'Pasquale.Lynch@yahoo.com'[39m,
-  firstName: [32m'Desiree'[39m,
-  lastName: [32m'Boehm'[39m,
+  email: [32m'Spencer_Harvey@yahoo.com'[39m,
+  firstName: [32m'Robb'[39m,
+  lastName: [32m'Blanda'[39m,
   password: [32m'Test@123'[39m,
-  zipCode: [32m'39546'[39m
+  zipCode: [32m'66267'[39m
 }
 {
-  email: [32m'Nola37@yahoo.com'[39m,
+  email: [32m'Seth.Schaden78@gmail.com'[39m,
   firstName: [32m'Sara'[39m,
-  lastName: [32m'Cruickshank'[39m,
+  lastName: [32m'Mitchell'[39m,
   password: [32m'Test@123'[39m,
-  zipCode: [32m'82074-4769'[39m
+  zipCode: [32m'08999-0308'[39m
 }
 ]]>
 </system-out>
 </testcase>
 </testsuite>
-<testsuite name="hybrid.spec.js" timestamp="2026-09-12T08:29:01.970Z" hostname="chromium" tests="6" failures="0" skipped="0" time="9.92" errors="0">
-<testcase name="Task 1" classname="hybrid.spec.js" time="1.761">
+<testsuite name="hybrid.spec.js" timestamp="2026-09-17T14:58:08.410Z" hostname="chromium" tests="6" failures="0" skipped="0" time="8.247" errors="0">
+<testcase name="Task 1" classname="hybrid.spec.js" time="1.55">
 </testcase>
-<testcase name=" Task 2" classname="hybrid.spec.js" time="1.712">
+<testcase name=" Task 2" classname="hybrid.spec.js" time="1.474">
 </testcase>
-<testcase name="Task 3" classname="hybrid.spec.js" time="0.798">
+<testcase name="Task 3" classname="hybrid.spec.js" time="0.654">
 </testcase>
-<testcase name="Task 4" classname="hybrid.spec.js" time="2.842">
+<testcase name="Task 4" classname="hybrid.spec.js" time="1.539">
 </testcase>
-<testcase name="Task 5" classname="hybrid.spec.js" time="0.847">
+<testcase name="Task 5" classname="hybrid.spec.js" time="0.916">
 </testcase>
-<testcase name="Automation task 3" classname="hybrid.spec.js" time="1.96">
-</testcase>
-</testsuite>
-<testsuite name="inventory.spec.js" timestamp="2026-09-12T08:29:01.970Z" hostname="chromium" tests="3" failures="0" skipped="0" time="4.217" errors="0">
-<testcase name="Cart › can add item to cart" classname="inventory.spec.js" time="1.297">
-</testcase>
-<testcase name="Cart › Verify product name" classname="inventory.spec.js" time="1.355">
-</testcase>
-<testcase name="Cart › Assert title" classname="inventory.spec.js" time="1.565">
+<testcase name="Automation task 3" classname="hybrid.spec.js" time="2.114">
 </testcase>
 </testsuite>
-<testsuite name="network-mocking.spec.js" timestamp="2026-09-12T08:29:01.970Z" hostname="chromium" tests="7" failures="0" skipped="0" time="7.205" errors="0">
-<testcase name="Task 1" classname="network-mocking.spec.js" time="0.278">
+<testsuite name="inventory.spec.js" timestamp="2026-09-17T14:58:08.410Z" hostname="chromium" tests="3" failures="0" skipped="0" time="4.701" errors="0">
+<testcase name="Cart › can add item to cart" classname="inventory.spec.js" time="1.574">
 </testcase>
-<testcase name="Task 2" classname="network-mocking.spec.js" time="1.081">
+<testcase name="Cart › Verify product name" classname="inventory.spec.js" time="1.629">
 </testcase>
-<testcase name="Test 3" classname="network-mocking.spec.js" time="1.369">
+<testcase name="Cart › Assert title" classname="inventory.spec.js" time="1.498">
 </testcase>
-<testcase name="Test 4" classname="network-mocking.spec.js" time="3.35">
+</testsuite>
+<testsuite name="network-mocking.spec.js" timestamp="2026-09-17T14:58:08.410Z" hostname="chromium" tests="7" failures="0" skipped="0" time="8.217" errors="0">
+<testcase name="Task 1" classname="network-mocking.spec.js" time="0.495">
+</testcase>
+<testcase name="Task 2" classname="network-mocking.spec.js" time="1.37">
+</testcase>
+<testcase name="Test 3" classname="network-mocking.spec.js" time="1.455">
+</testcase>
+<testcase name="Test 4" classname="network-mocking.spec.js" time="3.376">
 <system-out>
-<![CDATA[Normal load: [33m674[39m ms
-Slow load: [33m2211[39m ms
+<![CDATA[Normal load: [33m562[39m ms
+Slow load: [33m2253[39m ms
 ]]>
 </system-out>
 </testcase>
-<testcase name="Automation task 1" classname="network-mocking.spec.js" time="0.381">
+<testcase name="Automation task 1" classname="network-mocking.spec.js" time="0.455">
 </testcase>
-<testcase name="Automation task 2" classname="network-mocking.spec.js" time="0.388">
+<testcase name="Automation task 2" classname="network-mocking.spec.js" time="0.493">
 </testcase>
-<testcase name="mock the products API" classname="network-mocking.spec.js" time="0.358">
+<testcase name="mock the products API" classname="network-mocking.spec.js" time="0.573">
 </testcase>
 </testsuite>
 </testsuites>
