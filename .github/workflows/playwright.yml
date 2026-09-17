@@ -21,6 +21,11 @@ jobs:
         run: npx playwright install --with-deps
       - name: Run smoke tests
         run: npx playwright test --grep @smoke
+        env:
+          STANDARD_USER: ${{ secrets.STANDARD_USER }}
+          STANDARD_PASSWORD: ${{ secrets.STANDARD_PASSWORD }}
+          BASE_URL: ${{ secrets.BASE_URL }}
+
       - name: Run Playwright tests
         run: npx playwright test
         env: 
